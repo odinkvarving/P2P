@@ -22,7 +22,8 @@ const firestore = firebase.firestore();
 const stunServer = {
   iceServers: [
     {
-      urls: 'stun:stun1.l.google.com:19302', 
+      urls: ['stun:51.13.78.61:3478'],
+      //urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'],
     },
   ],
   iceCandidatePoolSize: 10,
@@ -42,8 +43,6 @@ const callButton = document.getElementById('callButton');
 const callInput = document.getElementById('callInput');
 const connectButton = document.getElementById('connectButton');
 const disconnectButton = document.getElementById('disconnectButton');
-
-//localVideo.muted = true;
 
 //Function which will display webcam in the browser/application
 webcamButton.onclick = async () => {
@@ -66,7 +65,7 @@ webcamButton.onclick = async () => {
   remoteVideo.srcObject = remoteStream;
 
   callButton.disabled = false;
-  answerButton.disabled = false;
+  connectButton.disabled = false;
   webcamButton.disabled = true;
 };
 
@@ -110,7 +109,7 @@ callButton.onclick = async () => {
   //Reference Firestore collection
   const callDoc = firestore.collection('calls').doc();
   const offerCandidates = callDoc.collection('offerCandidates');
-  const answerCandidates = callDoc.collection('answerCandidates');
+  const answerCandidates = callDoc.collection('answerCandidates');  
 
   callInput.value = callDoc.id;
 
@@ -171,6 +170,9 @@ connectButton.onclick = async () => {
   //Here we are setting a remote description on our peer connection
   const offerDescription = callData.offer;
   await peerConnection.setRemoteDescription(new RTCSessionDescription(offerDescription));
+
+  const answerDescription = await peerConnection.createAnswer();
+  await peerConnection.setLocalDescription(answerDescription);
 
   const answer = {
     type: answerDescription.type,
