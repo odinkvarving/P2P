@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <stunOperations.hpp>
 
 #define BINDING_REQUEST 0b0000000000000001
 #define INDICATION 0b0000000000010001
