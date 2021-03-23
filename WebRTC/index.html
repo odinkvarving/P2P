@@ -10,32 +10,35 @@
       <div id="header">
         <h1>WebRTC Video Chat</h1>
       </div>
-      <div class="videos" id="local">
-        <p id="localP">Your Webcam/Screen</p>
-        <video id="localVideo" autoplay playsinline muted></video>
-        <div id="localButtons">
-          <button class="start" id="startWebcamButton">Start Webcam</button>
-          <button class="stop" id="stopWebcamButton">Stop Webcam</button>
-          <button class="start" id="startScreenButton">Start Screen</button>
-          <button class="stop" id="stopScreenButton">Stop Screen</button>
+      <div class="videos normal">
+        <div id="local">
+          <p id="localP"></p> <!--Your Webcam/Screen-->
+          <video id="localVideo" autoplay playsinline muted></video>
+          <div id="localButtons">
+            <button class="start" id="startWebcamButton">Start Webcam</button>
+            <button class="stop" id="stopWebcamButton" disabled>Stop Webcam</button>
+            <button class="start" id="startScreenButton">Start Screen</button>
+            <button class="stop" id="stopScreenButton" disabled>Stop Screen</button>
+          </div>
+        </div>
+        <div class="videos" id="remote">
+          <p id="remoteP"></p> <!--Remote Video-->
+          <button id="changeSizeButton">Enlarge Remote Video</button>
+          <button id="fullscreenButton">Fullscreen</button>
+          <video id="remoteVideo" autoplay playsinline></video>
+          <p id="emptyP"></p>
         </div>
       </div>
-      <div class="videos" id="remote">
-        <p id="remoteP">Remote Video</p>
-        <button id="changeSizeButton">Enlarge Remote Video</button>
-        <video id="remoteVideo" autoplay playsinline></video>
-        <p id="emptyP"></p>
-      </div>
       <div class="right" id="callFunctions">
-        <button class="calls" id="callButton" disabled>Start Call</button>
-        <input class="calls" id="callInput">
+        <button class="calls" id="callButton">Start Call</button>
+        <input class="calls" id="callInput" placeholder="call (offer) ID...">
         <button class="calls" id="connectButton" disabled>Connect</button>
         <button class="calls" id="disconnectButton" disabled>Disconnect</button>
       </div>
       <div class="right" id="chat">
-        <textarea readonly id="messages"></textarea>
-        <input id="input">
-        <button id="chatButton">Send message</button>
+        <textarea readonly id="messages" placeholder="Messages"></textarea>
+        <input id="messageInput" placeholder="Write message here...">
+        <button id="chatButton" disabled>Send message</button>
       </div>
     </div>
 

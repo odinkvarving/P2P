@@ -7,8 +7,8 @@ body{
   background-attachment: fixed;
 }
 video{
-  width: 500px;
-  height: 375px;
+  width: 29vw;
+  height: 43vh;
   border: 1px solid black;
   box-shadow: 0 0 10px black;
 }
@@ -18,29 +18,40 @@ button{
   border: 0;
   font-size: 15px;
   cursor: pointer;
-  background-color: #4b4b4b;
   color: #f2f2f2;
 }
-button:hover{
+button:enabled{
+  background-color: #303030;
+}
+button:disabled{
+  background-color: #888888;
+}
+button:hover:enabled{
   background-color: #121212;
   transition: 0.2s;
-}
-.videos{
-  width: 500px;
-}
-.right{
-  margin-left: 50px;
 }
 #app{
   display: grid;
   grid-template-areas: 
-  "header header header"
-  "local remote call"
-  "local remote chat";
-  margin: 50px 100px;
+  "header header"
+  "videos call"
+  "videos chat";
+  margin: 5vh 5vw;
 }
 #header{
   grid-area: header;
+}
+.videos{
+  grid-area: videos;
+  display: grid;
+  width: 60vw;
+}
+.normal{
+  grid-template-areas: 
+  "local remote";
+}
+.big{
+  grid-template-areas: none;
 }
 #local{
   grid-area: local;
@@ -49,7 +60,8 @@ button:hover{
   "localP"
   "localVideo"
   "localButtons";
-  margin-right: 30px;
+  margin-right: 4vw;
+  z-index: 1;
 }
 #localP{
   grid-area: localP;
@@ -59,40 +71,39 @@ button:hover{
 }
 #localButtons{
   grid-area: localButtons;
-  margin-top: 10px;
+  margin-top: 1vh;
 }
 #localButtons button{
-  width: 122px;
-}
-.start{
-  background-color: #303030;
-}
-.stop{
-  background-color: #6d6d6d;
+  width: 7.1vw;
 }
 #remote{
   grid-area: remote;
   display: grid;
   grid-template-areas: 
-  "remoteP sizeButton"
-  "remoteVideo remoteVideo"
-  "emptyP emptyP";
+  "sizeButton fullscreen"
+  "remoteVideo remoteVideo";
   grid-gap: 0;
 }
 #remoteP{
   grid-area: remoteP;
-  margin-top: 12px;
+  margin-top: 1vh;
 }
 #changeSizeButton{
   grid-area: sizeButton;
   width: 200px;
-  float: right;
+  z-index: 1;
+}
+#fullscreenButton{
+  grid-area: fullscreen;
+  margin-right: 4.6vw;
 }
 #remoteVideo{
   grid-area: remoteVideo;
+  z-index: 0;
 }
-#emptyP{
-  grid-area: emptyP;
+.right{
+  margin-left: 3vw;
+  width: 10vw;
 }
 #callFunctions{
   grid-area: call;
