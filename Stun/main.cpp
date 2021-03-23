@@ -49,17 +49,19 @@ public:
                 MSG_WAITALL, ( struct sockaddr *) &clientAddress, &len); 
             
             buffer[bytesIn] = '\0'; 
-            printf("Client : %s\n", buffer);
 
             findXPort(htons(clientAddress.sin_port));
             findXAddress(ntohl(clientAddress.sin_addr.s_addr));
+
+            char ipBuffer[4];
+            inet_ntop(AF_INET, &(clientAddress.sin_addr), ipBuffer, 4);
             
             char response[32];
                 
             successResponse(buffer, response);
             sendto(socketfd, (char *)response, 32,  
             MSG_CONFIRM, (const struct sockaddr *) &clientAddress, len); 
-            printf("Response : %s\n", response);  
+            std::cout << "Client connected with IP : " << ipBuffer << std::endl;
         }  
     }
 };
