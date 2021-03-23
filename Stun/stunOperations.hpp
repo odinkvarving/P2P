@@ -13,9 +13,9 @@ uint16_t checkMessageType(char* buffer);
 void XORMappedResponse(char *response);
 
 
-void findXPort(unsigned short clientPort);
+void findXPort(uint16_t clientPort);
 
-void findXAddress(unsigned int ip);
+void findXAddress(uint32_t ip);
 
 void successResponse(char* buffer, char* response);
 
