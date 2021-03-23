@@ -18,11 +18,10 @@ button{
   border: 0;
   font-size: 15px;
   cursor: pointer;
-  background-color: #2e2e2e;
+  background-color: #4b4b4b;
   color: #f2f2f2;
 }
 button:hover{
-  color: #ce8cd1;
   background-color: #121212;
   transition: 0.2s;
 }
@@ -62,8 +61,14 @@ button:hover{
   grid-area: localButtons;
   margin-top: 10px;
 }
-#webcamButton{
-  grid-area: webcamButton;
+#localButtons button{
+  width: 122px;
+}
+.start{
+  background-color: #303030;
+}
+.stop{
+  background-color: #6d6d6d;
 }
 #remote{
   grid-area: remote;
@@ -103,4 +108,7 @@ button:hover{
 }
 #chat{
   grid-area: chat;
+}
+#messages{
+  resize: none;
 }

@@ -36,15 +36,17 @@ let remoteStream = null; //Remote webcam/screen stream
 //Elements
 const localVideo = document.getElementById('localVideo');
 const remoteVideo = document.getElementById('remoteVideo');
-const webcamButton = document.getElementById('webcamButton');
-const screenButton = document.getElementById('screenButton');
+const startWebcamButton = document.getElementById('startWebcamButton');
+const stopWebcamButton = document.getElementById('stopWebcamButton');
+const startScreenButton = document.getElementById('startScreenButton');
+const stopScreenButton = document.getElementById('stopScreenButton');
 const callButton = document.getElementById('callButton');
 const callInput = document.getElementById('callInput');
 const connectButton = document.getElementById('connectButton');
 const disconnectButton = document.getElementById('disconnectButton');
 
 //Function which will display webcam in the browser/application
-webcamButton.onclick = async () => {
+startWebcamButton.onclick = async () => {
   localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
   remoteStream = new MediaStream();
 
@@ -65,32 +67,38 @@ webcamButton.onclick = async () => {
 
   callButton.disabled = false;
   connectButton.disabled = false;
-  webcamButton.disabled = true;
+  startWebcamButton.disabled = true;
 };
 
 //Function which will display screen in the browser/application
-screenButton.onclick = async () => {
-  localStream = startCapture({ video: true, audio: true });
+startScreenButton.onclick = async () => {
+  try {
+    let localStream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
+    localVideo.srcObject = localStream;
+  } catch(error) {
+    console.error("Error: " + error);
+  }
+
   remoteStream = new MediaStream();
 
   //Push tracks from local stream to peer connection
-  localStream.getTracks().forEach((track) => {
+  /*localStream.getTracks().forEach((track) => {
     peerConnection.addTrack(track, localStream);
-  });
+  });*/
 
   //Pull tracks from remote stream and add to video stream
-  peerConnection.ontrack = (event) => {
+  /*peerConnection.ontrack = (event) => {
     event.streams[0].getTracks().forEach((track) => {
       remoteStream.addTrack(track);
     })
-  }
+  }*/
 
-  localVideo.srcObject = localStream;
+  //localVideo.srcObject = localStream;
   remoteVideo.srcObject = remoteStream;
 
   callButton.disabled = false;
   connectButton.disabled = false;
-  webcamButton.disabled = true;
+  startWebcamButton.disabled = true;
 };
 
 async function startCapture(displayMediaOptions) {

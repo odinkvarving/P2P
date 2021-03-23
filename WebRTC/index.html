@@ -14,8 +14,10 @@
         <p id="localP">Your Webcam/Screen</p>
         <video id="localVideo" autoplay playsinline muted></video>
         <div id="localButtons">
-          <button id="webcamButton">Start Webcam</button>
-          <button id="screenButton">Start Screen Share</button>
+          <button class="start" id="startWebcamButton">Start Webcam</button>
+          <button class="stop" id="stopWebcamButton">Stop Webcam</button>
+          <button class="start" id="startScreenButton">Start Screen</button>
+          <button class="stop" id="stopScreenButton">Stop Screen</button>
         </div>
       </div>
       <div class="videos" id="remote">
@@ -33,7 +35,7 @@
       <div class="right" id="chat">
         <textarea readonly id="messages"></textarea>
         <input id="input">
-        <button id="chatButton"></button>
+        <button id="chatButton">Send message</button>
       </div>
     </div>
 
