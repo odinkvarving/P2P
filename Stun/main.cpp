@@ -53,8 +53,8 @@ public:
             findXPort(htons(clientAddress.sin_port));
             findXAddress(ntohl(clientAddress.sin_addr.s_addr));
 
-            char ipBuffer[4];
-            inet_ntop(AF_INET, &(clientAddress.sin_addr), ipBuffer, 4);
+            char ipBuffer[16];
+            inet_ntop(AF_INET, &(clientAddress.sin_addr), ipBuffer, 16);
             
             char response[32];
                 
