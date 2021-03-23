@@ -43,8 +43,6 @@ const callInput = document.getElementById('callInput');
 const connectButton = document.getElementById('connectButton');
 const disconnectButton = document.getElementById('disconnectButton');
 
-
-
 //Function which will display webcam in the browser/application
 webcamButton.onclick = async () => {
   localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
