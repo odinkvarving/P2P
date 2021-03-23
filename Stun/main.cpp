@@ -42,7 +42,7 @@ public:
         socklen_t len;
         int bytesIn; 
   
-        while(true) {
+        //while(true) {
             len = sizeof(clientAddress);  //len is value/result 
             
             bytesIn = recvfrom(socketfd, (char *)buffer, 1024,  
@@ -62,7 +62,7 @@ public:
             sendto(socketfd, (char *)response, 32,  
             MSG_CONFIRM, (const struct sockaddr *) &clientAddress, len); 
             std::cout << "Client connected with IP : " << ipBuffer << std::endl;
-        }  
+        //}  
     }
 };
 
