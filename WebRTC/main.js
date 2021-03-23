@@ -34,7 +34,7 @@ let localStream = null; //Local webcam/screen stream
 let remoteStream = null; //Remote webcam/screen stream
 
 //Elements
-const webcamVideo = document.getElementById('webcamVideo');
+const localVideo = document.getElementById('localVideo');
 const remoteVideo = document.getElementById('remoteVideo');
 const webcamButton = document.getElementById('webcamButton');
 const screenButton = document.getElementById('screenButton');
@@ -42,6 +42,8 @@ const callButton = document.getElementById('callButton');
 const callInput = document.getElementById('callInput');
 const connectButton = document.getElementById('connectButton');
 const disconnectButton = document.getElementById('disconnectButton');
+
+
 
 //Function which will display webcam in the browser/application
 webcamButton.onclick = async () => {
@@ -60,7 +62,7 @@ webcamButton.onclick = async () => {
     });
   };
 
-  webcamVideo.srcObject = localStream;
+  localVideo.srcObject = localStream;
   remoteVideo.srcObject = remoteStream;
 
   callButton.disabled = false;
