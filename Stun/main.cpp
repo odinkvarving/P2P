@@ -7,7 +7,7 @@
 #include <sys/socket.h> 
 #include <arpa/inet.h> 
 #include <netinet/in.h> 
-#include "./stunOperations.hpp"
+#include "stunOperations.hpp"
 
 
 class Socket {

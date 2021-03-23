@@ -1,4 +1,6 @@
 #include <iostream>
+#ifndef HEADER_H
+#define HEADER_H
 
 bool checkIfRequest(char* buffer);
 
@@ -15,6 +17,8 @@ void findXPort(unsigned short clientPort);
 void findXAddress(unsigned int ip);
 
 void successResponse(char* buffer, char* response);
+
+#endif
 
 
 
