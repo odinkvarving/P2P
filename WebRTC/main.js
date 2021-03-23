@@ -23,7 +23,6 @@ const stunServer = {
   iceServers: [
     {
       urls: ['stun:51.13.78.61:3478'],
-      //urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'],
     },
   ],
   iceCandidatePoolSize: 10,
