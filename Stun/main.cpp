@@ -3,8 +3,6 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/types.h>
-//#include <winsock2.h>
-//#include <windows.h>
 #include <sys/types.h> 
 #include <sys/socket.h> 
 #include <arpa/inet.h> 
