@@ -29,7 +29,7 @@ We could also implement ways for the server to handle retransmissions from a cli
 </ol>
 
 <h3>Instructions for starting the STUN server</h3>
-<p>To run our STUN server, there are two commands we need to run:</p>
+<p>To run the STUN server, it requires that the previous steps were followed. Futher, there are two commands we need to run:</p>
 <ol>
 <li> & g++ -o main main.cpp stunOperations.cpp</li>
 <li> & ./main </li>
