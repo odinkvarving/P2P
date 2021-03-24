@@ -19,7 +19,7 @@ Vår STUN-server håndterer også om det er noe feil i forespørsel fra peer.
 
 <h4>External dependencies with a brief description of every dependency and what it is used for</h4>
 
-<h4>Installasjonsinstruksjoner Instructions for installation</h4>
+<h4>Instructions for installation</h4>
 
 <h4>Instructions for running the STUN server</h4>
 For å kjøre STUN-serveren vår må man skrive noen kommandoer i kommandofeltet:
@@ -29,6 +29,7 @@ For å kjøre STUN-serveren vår må man skrive noen kommandoer i kommandofeltet
 </ul>
 
 <h4>How we can run eventual tests</h4>
+To test our STUN server, we could purposely send a bad request, which will 
 
 <h4>Link for API documentation</h4>
 
