@@ -40,6 +40,7 @@ We could also implement ways for the server to handle retransmissions from a cli
 <p>To test our STUN server, we could either test for success or failure. Testing for success could be done by receiving a legal request from a peer. As we mentioned in the introduction, our STUN server will handle the request, and either send a success response or an error response. In this scenario, if our code is correct, the request will be handled and a success response will be sent back to the requesting peer.</p>
 <p>An example of testing for failure is to purposely send a bad request, which will cause an error. As an example, we could send a request with an incorrect Magic Cookie. In this case, the peer will receive the error response. The test will be a success if the test causes error.</p>
 
+<h3>Sources:</h3>
 <p>Setup of UDP-server found from: https://www.geeksforgeeks.org/udp-server-client-implementation-c/ </p>
 
 <h2>WebRTC</h2>
