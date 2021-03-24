@@ -19,17 +19,17 @@ We could also implement ways for the server to handle retransmissions from a cli
 <p>Below you can find the instructions for installing the STUN-server. If you are using Windows make sure that you have installed an editor or compiler that can handle C++ source-code.</p>
 <h5>Cloning the project</h5>
 <ol>
-<li>Clone the git repository of the project linked here: https://github.com/odinkvarving/P2P to a folder on your local directory.</li>
+<li>Clone the git repository of the project linked here: https://github.com/odinkvarving/P2P to a folder in your local directory.</li>
 <li>If you’re using Linux, simply CD to the location where you cloned the project to. If you’re using Windows, the simplest way is to enable Linux Subsystem for Windows (Windows 10) and using the command ‘bash’ inside cmd. This will open a bash-terminal, where you can run Linux commands. Follow steps described for Linux above.</li>
 <li>Proceed to the next steps below.</li>
 </ol>
 
 <h4>Instructions for starting the STUN server</h4>
 <p>To run our STUN server, there are two commands we need to run:</p>
-<ul>
+<ol>
 <li> & g++ -o main main.cpp stunOperations.cpp</li>
 <li> & ./main </li>
-</ul>
+</ol>
 <p>These commands will compile and run our server code, which will start the STUN server.</p>
 <h4>How we can run eventual tests</h4>
 <p>To test our STUN server, we could either test for success or failure. Testing for success could be done by receiving a legal request from a peer. As we mentioned in the introduction, our STUN server will handle the request, and either send a success response or an error response. In this scenario, if our code is correct, the request will be handled and a success response will be sent back to the requesting peer.</p>
@@ -37,14 +37,14 @@ We could also implement ways for the server to handle retransmissions from a cli
 
 <h3>WebRTC</h3>
 <h4>Quick installation guide, which requires that the repo is cloned:</h4>
-<ul>
+<ol>
    <li>Install Nodejs</li>
    <li>Go to WebRTC directory in cloned project</li>
    <li>Open CMD or enter terminal of WebRTC directory</li>
    <li>Run command: npm install</li>
-</ul>
+</ol>
 <h4>Quick startup guide, which requires that the previous points are followed:</h4>
-<ul>
+<ol>
    <li>Go to WebRTC directory in cloned project</li>
    <li>Open CMD or enter terminal of WebRTC directory</li>
    <li>Run command: npm run build</li>
@@ -52,3 +52,4 @@ We could also implement ways for the server to handle retransmissions from a cli
    <li>Run command: npm run dev</li>
    <ul><li>This command will run the application</li></ul>
    <li>Open localhost:3000 (or "local-ip-address:3000")</li>
+</ol>
