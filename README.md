@@ -12,17 +12,18 @@ Ekstern peer sender forespørsel på samme måte, og får offentlige IP-adresse 
 Ved hjelp av denne informasjonen kan begge peerene opprette en forbindelse mellom seg, og overføre data til hverandre.
 Vår STUN-server håndterer også om det er noe feil i forespørsel fra peer.
 
-Implementert funksjonalitet
+<h3>Implementert funksjonalitet</h3>
 
-Fremtidig arbeid med oversikt over nåværende mangler
+<h3>Fremtidig arbeid med oversikt over nåværende mangler</h3>
 
-Eksterne avhengigheter med en kort beskrivelse av hver avhengighet og hva den er brukt til
+<h3>Eksterne avhengigheter med en kort beskrivelse av hver avhengighet og hva den er brukt til</h3>
 
-Installasjonsinstruksjoner
+<h3>Installasjonsinstruksjoner</h3>
 
-Instruksjoner for å starte STUN-serveren
+<h3>Instruksjoner for å starte STUN-serveren:</h3>
 
-Hvordan en kan kjøre eventuelle tester
 
-Eventuell lenke til API dokumentasjon
+<h3>Hvordan en kan kjøre eventuelle tester</h3>
+
+<h3>Eventuell lenke til API dokumentasjon</h3>
 
