@@ -126,7 +126,7 @@ peerConnection.ondatachannel = handleChatChannelCallback;
  * @param {*} event : message event
  */
 chatChannel.onmessage = (event) => {
-  let message = "Received message: " + event.data + "\n";
+  let message = "Peer: " + event.data + "\n";
   console.log(message);
   messages.innerHTML += message;
 };
@@ -419,7 +419,7 @@ chatButton.onclick = async () => {
       alert("ERROR: You cannot send empty message!");
       return;
   }
-  let print = "Input: " + message + "\n";
+  let print = "You: " + message + "\n";
   console.log(print);
   messages.innerHTML += print;
   chatChannel.send(message);
