@@ -12,7 +12,6 @@
       </div>
       <div class="videos normal">
         <div id="local">
-          <p id="localP"></p> <!--Your Webcam/Screen-->
           <video id="localVideo" autoplay playsinline muted></video>
           <div id="localButtons">
             <button class="start" id="startWebcamButton">Start Webcam</button>
@@ -22,11 +21,9 @@
           </div>
         </div>
         <div class="videos" id="remote">
-          <p id="remoteP"></p> <!--Remote Video-->
           <button id="changeSizeButton">Enlarge Remote Video</button>
           <button id="fullscreenButton">Fullscreen</button>
           <video id="remoteVideo" autoplay playsinline></video>
-          <p id="emptyP"></p>
         </div>
       </div>
       <div class="right" id="callFunctions">
@@ -36,9 +33,9 @@
         <button class="calls" id="disconnectButton" disabled>Disconnect</button>
       </div>
       <div class="right" id="chat">
-        <textarea class="calls" readonly id="messages" placeholder="Messages..."></textarea>
-        <input class="calls" id="messageInput" placeholder="Write message here...">
-        <button class="calls" id="chatButton" disabled>Send message</button>
+        <textarea class="msg" readonly id="messages" placeholder="Messages..."></textarea>
+        <input class="msg" id="messageInput" placeholder="Write message here...">
+        <button class="msg" id="chatButton" disabled>Send message</button>
       </div>
     </div>
 

@@ -146,6 +146,12 @@ remoteVideo.addEventListener('event', () => {
  * If peer connection is opened, it will be displayed remotely as well
  */
 startWebcamButton.onclick = async () => {
+  Object.assign(localVideo.style, {
+    width: "29vw",
+    height: "43vh",
+    marginTop: "7vh",
+  });
+
   localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
   startVideo(localStream);
 
@@ -174,6 +180,11 @@ startScreenButton.onclick = async () => {
   } catch(error) {
     console.error("Error: " + error);
   }
+
+  Object.assign(localVideo.style, {
+    height: "32.3vh",
+    marginTop: "7vh",
+  });
 
   startWebcamButton.disabled = false;
   stopWebcamButton.disabled = true;
@@ -215,6 +226,12 @@ function startVideo(localStream) {
  * @returns if localStream (webcam/screen) is null
  */
 function stopVideo() {
+  Object.assign(localVideo.style, {
+    width: "29vw",
+    height: "43vh",
+    marginTop: "7vh",
+  });
+
   localStream = localVideo.srcObject;
   if (localStream == null) {
     console.log("Empty stream!");
@@ -250,14 +267,14 @@ changeSizeButton.onclick = () => {
     changeSizeButton.innerHTML = "Reduce Remote Video";
     videos.style.gridTemplateAreas = "none";
     Object.assign(remoteVideo.style, {
-      width: "45.1vw",
+      width: "60.1vw",
       height: "67vh",
       marginTop: "0",
     });
     Object.assign(localVideo.style, {
       width: "10vw",
       height: "14.85vh",
-      marginTop: "52.6vh",
+      marginTop: "59vh",
     });
   }
   else {
@@ -270,7 +287,7 @@ changeSizeButton.onclick = () => {
     Object.assign(localVideo.style, {
       width: "29vw",
       height: "43vh",
-      marginTop: "0",
+      marginTop: "7vh",
     });
   }
   

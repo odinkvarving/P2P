@@ -2,7 +2,7 @@ body{
   font-family: sans-serif;
   background-color: #f2f2f2;
   height: 100%;
-  margin: 0px;
+  margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -13,8 +13,7 @@ video{
   box-shadow: 0 0 10px black;
 }
 button{
-  width: 150px;
-  height: 30px;
+  height: 3vh;
   border: 0;
   font-size: 15px;
   cursor: pointer;
@@ -57,17 +56,14 @@ button:hover:enabled{
   grid-area: local;
   display: grid;
   grid-template-areas: 
-  "localP"
   "localVideo"
   "localButtons";
   margin-right: 4vw;
   z-index: 1;
 }
-#localP{
-  grid-area: localP;
-}
 #localVideo{
   grid-area: localVideo;
+  margin-top: 7vh;
 }
 #localButtons{
   grid-area: localButtons;
@@ -84,25 +80,22 @@ button:hover:enabled{
   "remoteVideo remoteVideo";
   grid-gap: 0;
 }
-#remoteP{
-  grid-area: remoteP;
-  margin-top: 1vh;
-}
 #changeSizeButton{
   grid-area: sizeButton;
-  width: 200px;
+  width: 12vw;
   z-index: 1;
 }
 #fullscreenButton{
   grid-area: fullscreen;
-  margin-right: 4.6vw;
+  width: 8vw;
+  margin-right: 21.8vw;
+  z-index: 1;
 }
 #remoteVideo{
   grid-area: remoteVideo;
   z-index: 0;
 }
 .right{
-  margin-left: 3vw;
   width: 10vw;
 }
 #callFunctions{
@@ -115,19 +108,23 @@ button:hover:enabled{
 }
 .calls{
   margin-top: 5px;
-  width: 170px;
+  width: 8.9vw;
 }
 #chat{
   grid-area: chat;
 }
 #messages{
   resize: none;
-  height: 200px;
-  width: 165px;
+  height: 22vh;
+  width: 13vw;
   margin-top: 50px;
   font-family: sans-serif;
 }
 #messageInput{
   height: 25px;
-  width: 162px;
+  width: 12.9vw;
+}
+#chatButton{
+  margin-top: 5px;
+  width: 13.4vw;
 }
