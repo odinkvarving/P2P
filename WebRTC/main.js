@@ -17,8 +17,10 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
+//Firestore for storing calls (offerCandidates/answerCandidates)
 const firestore = firebase.firestore();
 
+//Stun server
 const stunServer = {
   iceServers: [
     {
@@ -28,12 +30,11 @@ const stunServer = {
   iceCandidatePoolSize: 10,
 };
 
-//Global state
 const peerConnection = new RTCPeerConnection(stunServer); //Manages peer2peer connection
+let chatChannel = peerConnection.createDataChannel("chatChannel"); //RTCDataChannel
 let localStream = new MediaStream(); //Local webcam/screen stream
 let remoteStream = new MediaStream(); //Remote webcam/screen stream
 
-//Elements
 const videos = document.querySelector('.videos');
 const localVideo = document.getElementById('localVideo');
 const remoteVideo = document.getElementById('remoteVideo');
@@ -47,27 +48,103 @@ const callButton = document.getElementById('callButton');
 const callInput = document.getElementById('callInput');
 const connectButton = document.getElementById('connectButton');
 const disconnectButton = document.getElementById('disconnectButton');
-const messages = document.getElementById('messages');
+let messages = document.getElementById('messages');
 const messageInput = document.getElementById('messageInput');
 const chatButton = document.getElementById('chatButton');
 
+/**
+ * Event handler for peerConnection on iceconnection state change = 'disconnected'
+ * Calls connectionClosed
+ */
 peerConnection.oniceconnectionstatechange = () => {
   if (peerConnection.iceConnectionState == 'disconnected') {
     connectionClosed();
   }
+  if (peerConnection.iceConnectionState == 'connected' || peerConnection.iceConnectionState == 'completed') {
+    connectButton.disabled = true;
+    disconnectButton.disabled = false;
+    chatButton.disabled = false;
+  }
 }
 
+/**
+ * Event listener for peerConnection when track is added
+ */
 peerConnection.addEventListener('track', (event) => {
   remoteVideo.srcObject = event.streams[0];
 });
 
+/**
+ * Function for handling onopen event
+ */
+let handleChatChannelOpen = (event) => {
+  console.log("onopen: " + event.data);
+};
+
+/**
+ * Function for handling onmessage event
+ */
+let handleChatChannelReceivedMessage = (event) => {
+  console.log("onmessage: " + event);
+};
+
+/**
+ * Function for handling onerror event
+ */
+let handleChatChannelError = (error) => {
+  console.log("onerror: " + error);
+};
+
+/**
+ * Function for handling onclose event
+ */
+let handleChatChannelClose = (event) => {
+  console.log("onclose: ", event);
+};
+
+/**
+ * Function for initalizing chatChannel
+ * @param {*} event : event of callback
+ */
+let handleChatChannelCallback = (event) => {
+  chatChannel = event.channel;
+  chatChannel.onopen = handleChatChannelOpen;
+  chatChannel.onmessage = handleChatChannelReceivedMessage;
+  chatChannel.onerror = handleChatChannelError;
+  chatChannel.onclose = handleChatChannelClose;
+};
+
+/**
+ * Event handler for peerConnection on data channel event
+ * Runs handleChatChannelCallback, which fully initializes chatChannel
+ */
+peerConnection.ondatachannel = handleChatChannelCallback;
+
+/**
+ * Event handler for chatChannel on message event
+ * Message is received and added to messages element
+ * @param {*} event : message event
+ */
+chatChannel.onmessage = (event) => {
+  let message = "Received message: " + event.data + "\n";
+  console.log(message);
+  messages.innerHTML += message;
+};
+
+/**
+ * Event listener for remoteVideo when removing remoteVideo
+ */
 remoteVideo.addEventListener('event', () => {
   if (remoteVideo.srcObject != null) {
     remoteVideo.srcObject = null;
   }
 });
 
-//Function which will display webcam in the browser/application
+/**
+ * Event handler for startWebcamButton on click event
+ * Function for displaying webcam locally in the application
+ * If peer connection is opened, it will be displayed remotely as well
+ */
 startWebcamButton.onclick = async () => {
   localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
   startVideo(localStream);
@@ -78,10 +155,18 @@ startWebcamButton.onclick = async () => {
   stopScreenButton.disabled = true;
 };
 
-//Function which will stop webcam 
+/**
+ * Event handler for stopWebcamButton on click event
+ * stopVideo function is called, which will stop local webcam
+ * @returns if webcam is not turned on
+ */
 stopWebcamButton.onclick = async () => stopVideo();
 
-//Function which will display screen in the browser/application
+/**
+ * Event handler for startScreenButton on click event
+ * Function for displaying screen share locally in the application
+ * If peer connection is opened, it will be displayed remotely as well
+ */
 startScreenButton.onclick = async () => {
   try {
     localStream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
@@ -96,10 +181,17 @@ startScreenButton.onclick = async () => {
   stopScreenButton.disabled = false;
 };
 
-//Function which will stop screen share
+/**
+ * Event handler for stopScreenButton on click event
+ * stopVideo function is called, which will stop local screen share
+ * @returns if screen share is not turned on
+ */
 stopScreenButton.onclick = async () => stopVideo();
 
-//Function which adds tracks to remoteStream and adds video to html element
+/**
+ * Function for adding local video and adding eventual tracks to remoteStream
+ * @param {*} localStream : stream of video device (webcam/screen)
+ */
 function startVideo(localStream) { 
   // Push tracks from local stream to peer connection
   localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
@@ -118,7 +210,10 @@ function startVideo(localStream) {
   remoteVideo.srcObject = remoteStream;
 }
 
-//Function which removes tracks to remoteStream and removes video from html element
+/**
+ * Function for removing tracks from remoteStream and removes video of html element
+ * @returns if localStream (webcam/screen) is null
+ */
 function stopVideo() {
   localStream = localVideo.srcObject;
   if (localStream == null) {
@@ -145,7 +240,10 @@ function stopVideo() {
 //Amount of times changeSizeButton is clicked
 let clicks = 0;
 
-//Change size of videos
+/**
+ * Event handler for changeSizeButton on click event
+ * The function will change the layout of the videos
+ */
 changeSizeButton.onclick = () => {
   clicks++;
   if (!(clicks % 2 == 0)) {
@@ -178,12 +276,18 @@ changeSizeButton.onclick = () => {
   
 }
 
-//Function for fullscreen mode
+/**
+ * Event handler for fullscreenButton on click event
+ * Function for fullscreen mode
+ */
 fullscreenButton.onclick = () => {
   remoteVideo.requestFullscreen();
 }
 
-//Offer created by the user who starts the call
+/**
+ * Event handler for callButton on click event
+ * The function will create an offer by the user who starts the call
+ */
 callButton.onclick = async () => {
   //Reference Firestore collection
   const callDoc = firestore.collection('calls').doc();
@@ -232,15 +336,21 @@ callButton.onclick = async () => {
 
   connectButton.disabled = true;
   disconnectButton.disabled = false;
+  chatButton.disabled = false;
 };
 
-//Event listener for call ID
-//When callInput is not empty, connectButton will be clickable
+/**
+ * Event listener for callInput
+ * When callInput is not empty, connectButton will be clickable
+ */
 callInput.addEventListener('input', () => {
   connectButton.disabled = false;
 });
 
-//Answering call with unique ID
+/**
+ * Event handler for connectButton on click event
+ * Function for answering a call with a given unique ID
+ */
 connectButton.onclick = async () => {
   const callId = callInput.value;
   const callDoc = firestore.collection('calls').doc(callId);
@@ -278,16 +388,69 @@ connectButton.onclick = async () => {
 
   connectButton.disabled = true;
   disconnectButton.disabled = false;
+  chatButton.disabled = false;
 };
 
-disconnectButton.onclick = async () => {
-  connectionClosed();
+/**
+ * Event handler for chatButton on click event
+ * Function for sending input message
+ * @returns if input message is empty
+ */
+chatButton.onclick = async () => {
+  let message = messageInput.value;
+  if(message == ""){
+      alert("ERROR: You cannot send empty message!");
+      return;
+  }
+  let print = "Input: " + message + "\n";
+  console.log(print);
+  messages.innerHTML += print;
+  chatChannel.send(message);
 
+  messageInput.value = "";
+  messageInput.focus();
 }
 
+/**
+ * Function for handling status change of chat channel
+ */
+function handleChatChannelStatusChange() {
+  if(chatChannel){
+    let state = chatChannel.readyState;
+    if (state == 'open') {
+      messageInput.disabled = false;
+      messageInput.focus();
+      chatButton.disabled = false;
+    }
+    else {
+      messageInput.disabled = true;
+      chatButton.disabled = true;
+    }
+  }
+}
+
+/**
+ * Event handler for disconnectButton on click event
+ * connectionClosed will be called
+ */
+disconnectButton.onclick = async () => connectionClosed();
+
+/**
+ * Function for closing chat connection and peer connection
+ */
 function connectionClosed() {
-  peerConnection.close();
+  if (chatChannel) {
+    chatChannel.close(); //Closing the chat channel
+    chatChannel = null;
+  }
+  
+  peerConnection.close(); //Closing peer connection
+  
   remoteVideo.srcObject = null;
   console.log("Other peer disconnected");
   console.log("State: " + peerConnection.iceConnectionState);
+
+  connectButton.disabled = false;
+  disconnectButton.disabled = true;
+  chatButton.disabled = true;
 }
