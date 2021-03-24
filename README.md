@@ -1,6 +1,5 @@
 # P2P
 <h2>STUN server</h2>
-<h4>Name: stun server</h4>
 <h4>Introduction</h4>
 <p>The STUN server works by first creating a new socket that is waiting for requests on a specified port. When a client sends a request to the server it will respond with either a 'success response' or an 'error response'. The success response contains the public IP-address of the client and which port it is using - which is the core purpose of the STUN server. If there is something wrong with the request (eg. the Magic cookie in the request is incorrect) the response will be an error response instead - with an appropriate error-code.</p>
 <p>If two different clients use the stun-server to obtain their public IP-addresses, they can send packets back and forth to each other’s public IP without Network Address Translation.</p>
