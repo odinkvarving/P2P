@@ -23,10 +23,10 @@ Vår STUN-server håndterer også om det er noe feil i forespørsel fra peer.
 
 <h4>Instruksjoner for å starte STUN-serveren:</h4>
 For å kjøre STUN-serveren vår må man skrive noen kommandoer i kommandofeltet:
-<ol>
+<ul>
   <li>g++ -o main main.cpp stunOperations.cpp</li>
   <li>./main</li>
-</ol>
+</ul>
 
 <h4>Hvordan en kan kjøre eventuelle tester</h4>
 
