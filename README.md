@@ -1,7 +1,7 @@
 # P2P
 Dette er README-filen til STUN-serveren
 
-Navn: stun server
+<h4>Navn: stun server</h4>
 
 <h4>Introduksjon</h4>
 STUN-serveren vår tar imot forespørsler fra en peer.
@@ -22,7 +22,11 @@ Vår STUN-server håndterer også om det er noe feil i forespørsel fra peer.
 <h4>Installasjonsinstruksjoner</h4>
 
 <h4>Instruksjoner for å starte STUN-serveren:</h4>
-
+For å kjøre STUN-serveren vår må man skrive noen kommandoer i kommandofeltet:
+<ul>
+  <li>g++ -o main main.cpp stunOperations.cpp</li>
+  <li>./main</li>
+</ul>
 
 <h4>Hvordan en kan kjøre eventuelle tester</h4>
 
