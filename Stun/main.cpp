@@ -57,7 +57,7 @@ public:
             
             char response[32];
                 
-            successResponse(buffer, response);
+            stunResponse(buffer, response);
             sendto(socketfd, (char *)response, 32,  
             MSG_CONFIRM, (const struct sockaddr *) &clientAddress, len); 
             std::cout << "Client connected with IP : " << ipBuffer << std::endl;

@@ -17,7 +17,7 @@ void findXPort(uint16_t clientPort);
 
 void findXAddress(uint32_t ip);
 
-void successResponse(char* buffer, char* response);
+void stunResponse(char* buffer, char* response);
 
 
 #endif
