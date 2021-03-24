@@ -18,10 +18,10 @@ We could also implement ways for the server to handle retransmissions from a cli
 <p>Three dependencies we used in the STUN server are “sys/socket.h”, “arpa/inet.h” and “netinet/in.h”.</p>
 <p>”sys/socket.h” is an internet protocol family. socklen_t is a type which is available by the use of “sys/socket.h”. By using this type, we can achieve the actual size of a peer’s source address.</p>
 <p>”arpa/inet.h” and “netinet/in.h” are respectively a set of definitions for internet operations, and an internet protocol family. These were used to implement the sockaddr_in structure. With this structure, we can decide what kind of address the socket can communicate with, specify UDP-port and specify that the socket can be bound to all network interfaces on the host.</p>
-<h4>Instructions for installation</h4>
-<p>Below you can find the instructions for installing the STUN-server. If you are using Windows make sure that you have installed an editor or compiler that can handle C++ source-code.</p>
 
-<h3>Cloning the project</h3>
+<h3>Instructions for installation</h3>
+<p>Below you can find the instructions for installing the STUN-server. If you are using Windows make sure that you have installed an editor or compiler that can handle C++ source-code.</p>
+<b><p>Cloning the project</p></b>
 <ol>
 <li>Clone the git repository of the project linked here: https://github.com/odinkvarving/P2P to a folder in your local directory.</li>
 <li>If you’re using Linux, simply CD to the location where you cloned the project to. If you’re using Windows, the simplest way is to enable Linux Subsystem for Windows (Windows 10) and using the command ‘bash’ inside cmd. This will open a bash-terminal, where you can run Linux commands. Follow steps described for Linux above.</li>
