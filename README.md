@@ -6,7 +6,7 @@
 <p>Quick installation guide, which requires that the repo is cloned:</p>
 <ul>
    <li>Install Nodejs</li>
-   <li>Go to WebRTC directory in this project</li>
+   <li>Go to WebRTC directory in cloned project</li>
    <li>Open CMD or enter terminal of WebRTC directory</li>
    <li>Run command: npm install</li>
 </ul>
