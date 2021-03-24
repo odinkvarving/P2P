@@ -3,7 +3,7 @@ This is the README file for the STUN server
 
 <h4>Name: stun server</h4>
 
-<h4>Introduksjon</h4>
+<h4>Introduction</h4>
 STUN-serveren vår tar imot forespørsler fra en peer.
 Med denne forespørselen kan STUN-serveren tolke hvilken meldingstype forespørselen har og sjekke privat IP-adresse til peer.
 Videre konstruerer STUN-serveren en respons som skal sendes tilbake til peer.
