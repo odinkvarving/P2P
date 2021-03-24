@@ -19,7 +19,7 @@ We could also implement ways for the server to handle retransmissions from a cli
 <p>Below you can find the instructions for installing the STUN-server. If you are using Windows make sure that you have installed an editor or compiler that can handle C++ source-code.</p>
 <h5>Cloning the project</h5>
 <ol>
-<li>Clone the git repository of the project linked [&lt;here&gt;](https://github.com/odinkvarving/P2P) to a folder on your local directory.</li>
+<li>Clone the git repository of the project linked [here](https://github.com/odinkvarving/P2P) to a folder on your local directory.</li>
 <li>If you’re using Linux, simply CD to the location where you cloned the project to. If you’re using Windows, the simplest way is to enable Linux Subsystem for Windows (Windows 10) and using the command ‘bash’ inside cmd. This will open a bash-terminal, where you can run Linux commands. Follow steps described for Linux above.</li>
 <li>Proceed to the next steps below.</li>
 </ol>
