@@ -3,14 +3,14 @@
 
 
 <h3>WebRTC</h3>
-<p>Quick installation guide, which requires that the repo is cloned:</p>
+<h4>Quick installation guide, which requires that the repo is cloned:</h4>
 <ul>
    <li>Install Nodejs</li>
    <li>Go to WebRTC directory in cloned project</li>
    <li>Open CMD or enter terminal of WebRTC directory</li>
    <li>Run command: npm install</li>
 </ul>
-<p>Quick startup guide, which requires that the previous points are followed:</p>
+<h4>Quick startup guide, which requires that the previous points are followed:</h4>
 <ul>
    <li>Go to WebRTC directory in this project</li>
    <li>Open CMD or enter terminal of WebRTC directory</li>
